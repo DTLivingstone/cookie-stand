@@ -40,23 +40,24 @@ var alki = {
   dailyVolume: 0,
 }
 
-var pikePlaceEl = document.getElementById('pikePlace');
-var seaTacEl = document.getElementById('seaTac');
-var southcenterEl = document.getElementById('southcenter');
-var bellevueSquareEl = document.getElementById('bellevueSquare');
-var alkiEl = document.getElementById('alki');
+// var pikePlaceEl = document.getElementById('pikePlace');
+//
+// var pikePlaceUlEl = document.createElement('ul');
+//
+// pikePlaceUlEl.appendChild(document.createTextNode('Pike Place Market'));
 
-var pikePlaceUlEl = document.createElement('ul');
-var seaTacUlEl = document.createElement('ul');
-var southcenterUlEl = document.createElement('ul');
-var bellevueSquareUlEl = document.createElement('ul');
-var alkiUlEl = document.createElement('ul');
+function renderDailyVolume(store) {
+  var El = document.getElementById(store.location);
+  var ulEl = document.createElement('ul');
+  ulEl.appendChild(document.createTextNode(store.location));
 
-pikePlaceEl.appendChild(document.createTextNode('Pike Place Market'));
-seaTacEl.appendChild(document.createTextNode('SeaTac Airport'));
-southcenterEl.appendChild(document.createTextNode('Southcenter Mall'));
-bellevueSquareEl.appendChild(document.createTextNode('Bellevue Square'));
-alkiEl.appendChild(document.createTextNode('Alki'));
+  for (i = 0; i <=7 ; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = store.hourlyVolume[i];
+    ulEl.appendChild(liEl);
+  }
+  El.appendChild(ulEl);
+}
 
 // class examples
 // function Student(course, lastInitial, hairColor) {
@@ -102,3 +103,10 @@ calcDailyVolume(seaTac);
 calcDailyVolume(southcenter);
 calcDailyVolume(bellevueSquare);
 calcDailyVolume(alki);
+
+// render daily volume to page
+renderDailyVolume(pikePlace);
+renderDailyVolume(seaTac);
+renderDailyVolume(southcenter);
+renderDailyVolume(bellevueSquare);
+renderDailyVolume(alki);
