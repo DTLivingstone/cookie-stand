@@ -1,4 +1,4 @@
-// initialize  store objects
+// initialize variables
 var pikePlace = {
   location: 'Pike Place Market',
   minHourlyCustomers: 17,
@@ -16,7 +16,7 @@ var seaTac = {
   dailyVolume: 0,
 }
 var southcenter = {
-  location: 'southcenter Mall',
+  location: 'Southcenter Mall',
   minHourlyCustomers: 11,
   maxHourlyCustomers: 38,
   avgCustomerVolume: 1.9,
@@ -40,6 +40,24 @@ var alki = {
   dailyVolume: 0,
 }
 
+var pikePlaceEl = document.getElementById('pikePlace');
+var seaTacEl = document.getElementById('seaTac');
+var southcenterEl = document.getElementById('southcenter');
+var bellevueSquareEl = document.getElementById('bellevueSquare');
+var alkiEl = document.getElementById('alki');
+
+var pikePlaceUlEl = document.createElement('ul');
+var seaTacUlEl = document.createElement('ul');
+var southcenterUlEl = document.createElement('ul');
+var bellevueSquareUlEl = document.createElement('ul');
+var alkiUlEl = document.createElement('ul');
+
+pikePlaceEl.appendChild(document.createTextNode('Pike Place Market'));
+seaTacEl.appendChild(document.createTextNode('SeaTac Airport'));
+southcenterEl.appendChild(document.createTextNode('Southcenter Mall'));
+bellevueSquareEl.appendChild(document.createTextNode('Bellevue Square'));
+alkiEl.appendChild(document.createTextNode('Alki'));
+
 // class examples
 // function Student(course, lastInitial, hairColor) {
 //   this.course = course;
@@ -57,28 +75,30 @@ var alki = {
 // var paul = new Student('201d2', 'S', 'auburn');
 
 // functions
-function calcHourlyVolume (store) {
+function calcHourlyVolume(store) {
    for (var i = 0; i <= 7; i++) {
     store.hourlyVolume[i] = Math.round((Math.random() * (store.maxHourlyCustomers - store.minHourlyCustomers) + store.minHourlyCustomers) * store.avgCustomerVolume);
   }
 }
 
-function calcDailyVolume (store) {
+function calcDailyVolume(store) {
   for (var i = 0; i <= 7; i++) {
     store.dailyVolume = store.dailyVolume + store.hourlyVolume[i];
   }
 }
 
+//
+
 // calculate hourly volume
-calcHourlyVolume (pikePlace);
-calcHourlyVolume (seaTac);
-calcHourlyVolume (southcenter);
-calcHourlyVolume (bellevueSquare);
-calcHourlyVolume (alki);
+calcHourlyVolume(pikePlace);
+calcHourlyVolume(seaTac);
+calcHourlyVolume(southcenter);
+calcHourlyVolume(bellevueSquare);
+calcHourlyVolume(alki);
 
 // calculate daily volume
-calcDailyVolume (pikePlace);
-calcDailyVolume (seaTac);
-calcDailyVolume (southcenter);
-calcDailyVolume (bellevueSquare);
-calcDailyVolume (alki);
+calcDailyVolume(pikePlace);
+calcDailyVolume(seaTac);
+calcDailyVolume(southcenter);
+calcDailyVolume(bellevueSquare);
+calcDailyVolume(alki);
