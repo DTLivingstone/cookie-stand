@@ -40,24 +40,6 @@ var alki = {
   dailyVolume: 0,
 }
 
-// var pikePlaceEl = document.getElementById('pikePlace');
-//
-// var pikePlaceUlEl = document.createElement('ul');
-//
-// pikePlaceUlEl.appendChild(document.createTextNode('Pike Place Market'));
-
-function renderDailyVolume(store) {
-  var El = document.getElementById(store.location);
-  var ulEl = document.createElement('ul');
-  ulEl.appendChild(document.createTextNode(store.location));
-
-  for (i = 0; i <=7 ; i++) {
-    var liEl = document.createElement('li');
-    liEl.textContent = store.hourlyVolume[i];
-    ulEl.appendChild(liEl);
-  }
-  El.appendChild(ulEl);
-}
 
 // class examples
 // function Student(course, lastInitial, hairColor) {
@@ -78,17 +60,28 @@ function renderDailyVolume(store) {
 // functions
 function calcHourlyVolume(store) {
    for (var i = 0; i <= 7; i++) {
-    store.hourlyVolume[i] = Math.round((Math.random() * (store.maxHourlyCustomers - store.minHourlyCustomers) + store.minHourlyCustomers) * store.avgCustomerVolume);
+    store.hourlyVolume[i] = Math.floor((Math.random() * (store.maxHourlyCustomers - store.minHourlyCustomers) + store.minHourlyCustomers) * store.avgCustomerVolume);
   }
 }
-
 function calcDailyVolume(store) {
   for (var i = 0; i <= 7; i++) {
     store.dailyVolume = store.dailyVolume + store.hourlyVolume[i];
   }
 }
+function renderDailyVolume(store) {
+  var El = document.getElementById(store.location);
+  var ulEl = document.createElement('ul');
+  ulEl.appendChild(document.createTextNode(store.location));
 
-//
+  for (i = 0; i <=7 ; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = 'time: ' + store.hourlyVolume[i] + ' cookies';
+    ulEl.appendChild(liEl);
+  }
+  liEl.textContent = 'Total:' + store.dailyVolume;
+  ulEl.appendChild(liEl);
+  El.appendChild(ulEl);
+}
 
 // calculate hourly volume
 calcHourlyVolume(pikePlace);
