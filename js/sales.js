@@ -1,4 +1,5 @@
 // initialize variables
+var hours = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
 var pikePlace = {
   location: 'Pike Place Market',
   minHourlyCustomers: 17,
@@ -40,45 +41,27 @@ var alki = {
   dailyVolume: 0,
 }
 
-
-// class examples
-// function Student(course, lastInitial, hairColor) {
-//   this.course = course;
-//   this.lastInitial = lastInitial;
-//   this.hairColor = hairColor;
-// }
-//
-// // these exist outside, isn't in memory until called
-// Student.prototype.intro = function() {
-//   console.log('My last initial is' + this.lastInitial);
-// };
-//
-// Student.prototype.location = 'Washington';
-//
-// var paul = new Student('201d2', 'S', 'auburn');
-
 // functions
 function calcHourlyVolume(store) {
-   for (var i = 0; i <= 7; i++) {
+   for (var i = 0; i <= hours.length; i++) {
     store.hourlyVolume[i] = Math.floor((Math.random() * (store.maxHourlyCustomers - store.minHourlyCustomers) + store.minHourlyCustomers) * store.avgCustomerVolume);
   }
 }
 function calcDailyVolume(store) {
-  for (var i = 0; i <= 7; i++) {
-    store.dailyVolume = store.dailyVolume + store.hourlyVolume[i];
+  for (var i = 0; i <= hours.length; i++) {
+    store.dailyVolume += store.hourlyVolume[i];
   }
 }
 function renderDailyVolume(store) {
   var El = document.getElementById(store.location);
   var ulEl = document.createElement('ul');
   ulEl.appendChild(document.createTextNode(store.location));
-
-  for (i = 0; i <=7 ; i++) {
+  for (var i = 0; i <= hours.length ; i++) {
     var liEl = document.createElement('li');
-    liEl.textContent = 'time: ' + store.hourlyVolume[i] + ' cookies';
+    liEl.textContent =  hours[i] + ': ' + store.hourlyVolume[i] + ' cookies';
     ulEl.appendChild(liEl);
   }
-  liEl.textContent = 'Total:' + store.dailyVolume;
+  liEl.textContent = 'Total: ' + store.dailyVolume + ' cookies';
   ulEl.appendChild(liEl);
   El.appendChild(ulEl);
 }

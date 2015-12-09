@@ -1,3 +1,35 @@
 body {
-  background-color:#929292
+  background-color: #f4dec2;
+  font-family: Palatino, serif;
+  font-size: 24px;
+  color: #212121;
+}
+
+h1 {
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 80px;
+  color: #e98977;
+  text-shadow: 3px 3px 3px #c0c0c0;
+}
+
+img {
+  max-width: 200px;
+}
+
+#flipped {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: "FlipH";
+}
+
+section {
+  background-color: #f4b36c;
+}
+
+li {
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
+  color: #424242;
 }
