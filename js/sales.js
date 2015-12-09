@@ -1,52 +1,24 @@
 // initialize variables
 var hours = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
-var pikePlace = {
-  location: 'Pike Place Market',
-  minHourlyCustomers: 17,
-  maxHourlyCustomers: 88,
-  avgCustomerVolume: 5.2,
-  hourlyVolume: [],
-  dailyVolume: 0,
-}
-var seaTac = {
-  location: 'SeaTac Airport',
-  minHourlyCustomers: 6,
-  maxHourlyCustomers: 44,
-  avgCustomerVolume: 1.2,
-  hourlyVolume: [],
-  dailyVolume: 0,
-}
-var southcenter = {
-  location: 'Southcenter Mall',
-  minHourlyCustomers: 11,
-  maxHourlyCustomers: 38,
-  avgCustomerVolume: 1.9,
-  hourlyVolume: [],
-  dailyVolume: 0,
-}
-var bellevueSquare = {
-  location: 'Bellevue Square',
-  minHourlyCustomers: 20,
-  maxHourlyCustomers: 48,
-  avgCustomerVolume: 3.3,
-  hourlyVolume: [],
-  dailyVolume: 0,
-}
-var alki = {
-  location: 'Alki',
-  minHourlyCustomers: 3,
-  maxHourlyCustomers: 24,
-  avgCustomerVolume: 26,
-  hourlyVolume: [],
-  dailyVolume: 0,
-}
-
-// constructors
+var pikePlace = new Store('Pike Place Market', 17, 88, 5.2, [], 0);
+var seaTac = new Store('SeaTac Airport', 6, 44, 1.2, [], 0);
+var southcenter = new Store('Southcenter Mall', 11, 38, 1.9, [], 0);
+var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3, [], 0);
+var alki = new Store('Alki', 3, 24, 26, [], 0);
 
 // functions
+function Store(site, minCustomers, maxCustomers, avgCustomerVolume, hourlyVolume, dailyVolume) {
+  this.site = site;
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.avgCustomerVolume = avgCustomerVolume;
+  this.hourlyVolume = hourlyVolume;
+  this.dailyVolume = dailyVolume;
+}
+
 function calcHourlyVolume(store) {
    for (var i = 0; i <= hours.length; i++) {
-    x = Math.floor((Math.random() * (store.maxHourlyCustomers - store.minHourlyCustomers + 1) + store.minHourlyCustomers) * store.avgCustomerVolume);
+    x = Math.floor((Math.random() * (store.maxCustomers - store.minCustomers + 1) + store.minCustomers) * store.avgCustomerVolume);
     store.hourlyVolume[i] = x
   }
 }
@@ -56,9 +28,9 @@ function calcDailyVolume(store) {
   }
 }
 function renderDailyVolume(store) {
-  var El = document.getElementById(store.location);
+  var El = document.getElementById(store.site);
   var ulEl = document.createElement('ul');
-  ulEl.appendChild(document.createTextNode(store.location));
+  ulEl.appendChild(document.createTextNode(store.site));
   for (var i = 0; i <= hours.length ; i++) {
     var liEl = document.createElement('li');
     liEl.textContent =  hours[i] + ': ' + store.hourlyVolume[i] + ' cookies';
