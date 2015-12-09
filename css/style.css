@@ -1,19 +1,26 @@
 body {
   background-color: #f4dec2;
   font-family: Palatino, serif;
-  font-size: 24px;
   color: #212121;
 }
 
 h1 {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 80px;
+  font-size: 3em;
   color: #e98977;
-  text-shadow: 3px 3px 3px #c0c0c0;
+  text-shadow: 3em 3em 3em #c0c0c0;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.125em;
 }
 
 img {
-  max-width: 200px;
+  max-width: 25em;
 }
 
 #flipped {
@@ -30,6 +37,5 @@ section {
 
 li {
   font-family: Helvetica, sans-serif;
-  font-size: 18px;
   color: #424242;
 }
