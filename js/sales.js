@@ -31,7 +31,7 @@ function renderDailyVolume(store) {
   var El = document.getElementById(store.site);
   var ulEl = document.createElement('ul');
   ulEl.appendChild(document.createTextNode(store.site));
-  for (var i = 0; i <= hours.length ; i++) {
+  for (var i = 0; i <= hours.length; i++) {
     var liEl = document.createElement('li');
     liEl.textContent =  hours[i] + ': ' + store.hourlyVolume[i] + ' cookies';
     ulEl.appendChild(liEl);
@@ -39,6 +39,29 @@ function renderDailyVolume(store) {
   liEl.textContent = 'Total: ' + store.dailyVolume + ' cookies';
   ulEl.appendChild(liEl);
   El.appendChild(ulEl);
+}
+function buildTable() {
+  var El = document.getElementById('salesTable');
+  var tableEl = document.createElement('table');
+  tableEl.appendChild(document.createTextNode('foo'));
+  for (var i = 0; i <= hours.length; i++) {
+    // loop through hours to populate header
+  }
+  console.log(tableEl);
+  El.appendChild(tableEl);
+}
+function renderDailyVolumeTable(store) {
+  var El = document.getElementById(store.site);
+  var trEl = document.createElement('tr');
+  trEl.appendChild(document.createTextNode(store.site));
+  for (var i = 0; i <= hours.length; i++) {
+    var tdEl = document.createElement('td');
+    tdEl = hours[i] + ': ' + store.hourlyVolume[i] + ' cookies';
+    trEl.appendChild(tdEl);
+  }
+  tdEl.textContent = 'Total: ' + store.dailyVolume + ' cookies';
+  trEl.appendChild(tdEl);
+  El.appendChild(tdEl);
 }
 
 // calculate hourly volume
@@ -54,6 +77,9 @@ calcDailyVolume(seaTac);
 calcDailyVolume(southcenter);
 calcDailyVolume(bellevueSquare);
 calcDailyVolume(alki);
+
+// build table
+buildTable();
 
 // render daily volume to page
 renderDailyVolume(pikePlace);

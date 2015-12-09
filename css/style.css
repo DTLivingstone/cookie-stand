@@ -6,9 +6,9 @@ body {
 
 h1 {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 3em;
+  font-size: 4em;
   color: #e98977;
-  text-shadow: 3em 3em 3em #c0c0c0;
+  text-shadow: 3px 3px 3px #c0c0c0;
 }
 
 h2 {
