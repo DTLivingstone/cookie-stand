@@ -41,10 +41,13 @@ var alki = {
   dailyVolume: 0,
 }
 
+// constructors
+
 // functions
 function calcHourlyVolume(store) {
    for (var i = 0; i <= hours.length; i++) {
-    store.hourlyVolume[i] = Math.floor((Math.random() * (store.maxHourlyCustomers - store.minHourlyCustomers) + store.minHourlyCustomers) * store.avgCustomerVolume);
+    x = Math.floor((Math.random() * (store.maxHourlyCustomers - store.minHourlyCustomers + 1) + store.minHourlyCustomers) * store.avgCustomerVolume);
+    store.hourlyVolume[i] = x
   }
 }
 function calcDailyVolume(store) {
