@@ -5,6 +5,7 @@ var seaTac = new Store('SeaTac Airport', 6, 44, 1.2, [], 0);
 var southcenter = new Store('Southcenter Mall', 11, 38, 1.9, [], 0);
 var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3, [], 0);
 var alki = new Store('Alki', 3, 24, 26, [], 0);
+var allStores = [pikePlace, seaTac, southcenter, bellevueSquare, alki]
 
 // functions
 function Store(site, minCustomers, maxCustomers, avgCustomerVolume, hourlyVolume, dailyVolume) {
@@ -43,11 +44,13 @@ function renderDailyVolume(store) {
 function buildTable() {
   var El = document.getElementById('salesTable');
   var tableEl = document.createElement('table');
-  tableEl.appendChild(document.createTextNode('foo'));
-  for (var i = 0; i <= hours.length; i++) {
-    // loop through hours to populate header
+  var theadEl = document.createElement('thead');
+  theadEl.appendChild(document.createTextNode('Location'));
+  theadEl.appendChild(document.createTextNode('Total'));
+  for (var i = 0; i <= 4 ; i++) {
+    theadEl.appendChild(document.createTextNode(allStores[i]));
   }
-  console.log(tableEl);
+  tableEl.appendChild(theadEl);
   El.appendChild(tableEl);
 }
 function renderDailyVolumeTable(store) {
@@ -79,7 +82,7 @@ calcDailyVolume(bellevueSquare);
 calcDailyVolume(alki);
 
 // build table
-buildTable();
+buildTable(allStores);
 
 // render daily volume to page
 renderDailyVolume(pikePlace);

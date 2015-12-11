@@ -1,14 +1,37 @@
 body {
-  background-color: #f4dec2;
+  display: flex;
+  flex-direction: column;
   font-family: Palatino, serif;
+  background-color: #f4dec2;
   color: #212121;
 }
 
-h1 {
+header {
+  display: inherit;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#wordmark {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 4em;
+  font-size: 3em;
+  padding: 1em;
   color: #e98977;
   text-shadow: 3px 3px 3px #c0c0c0;
+}
+
+img.left {
+  justify-content: flex-start;
+  padding: 1em;
+  max-width: 7em;
+}
+
+img.right {
+  justify-content: flex-end;
+  padding: 1em;
+  max-width: 7em;
+  transform: scaleX(-1);
 }
 
 h2 {
@@ -17,18 +40,6 @@ h2 {
 
 h3 {
   font-size: 1.125em;
-}
-
-img {
-  max-width: 25em;
-}
-
-#flipped {
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: "FlipH";
 }
 
 section {
