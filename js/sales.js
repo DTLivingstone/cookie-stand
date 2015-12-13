@@ -5,7 +5,12 @@ var seaTac = new Store('SeaTac Airport', 6, 44, 1.2, [], 0);
 var southcenter = new Store('Southcenter Mall', 11, 38, 1.9, [], 0);
 var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3, [], 0);
 var alki = new Store('Alki', 3, 24, 26, [], 0);
-var allStores = [pikePlace, seaTac, southcenter, bellevueSquare, alki]
+var allStores = [pikePlace, seaTac, southcenter, bellevueSquare, alki];
+
+var El = document.getElementById('salesTable');
+var tableEl = document.createElement('table');
+var trEl = document.createElement('tr');
+var tdEl = document.createElement('td');
 
 // functions
 function Store(site, minCustomers, maxCustomers, avgCustomerVolume, hourlyVolume, dailyVolume) {
@@ -16,7 +21,6 @@ function Store(site, minCustomers, maxCustomers, avgCustomerVolume, hourlyVolume
   this.hourlyVolume = hourlyVolume;
   this.dailyVolume = dailyVolume;
 }
-
 function calcHourlyVolume(store) {
    for (var i = 0; i <= hours.length; i++) {
     x = Math.floor((Math.random() * (store.maxCustomers - store.minCustomers + 1) + store.minCustomers) * store.avgCustomerVolume);
@@ -41,30 +45,39 @@ function renderDailyVolume(store) {
   ulEl.appendChild(liEl);
   El.appendChild(ulEl);
 }
-function buildTable() {
-  var El = document.getElementById('salesTable');
-  var tableEl = document.createElement('table');
+function renderTableHead() {
+  // var El = document.getElementById('salesTable');
+  // var tableEl = document.createElement('table');
   var theadEl = document.createElement('thead');
-  theadEl.appendChild(document.createTextNode('Location'));
-  theadEl.appendChild(document.createTextNode('Total'));
-  for (var i = 0; i <= 4 ; i++) {
-    theadEl.appendChild(document.createTextNode(allStores[i]));
+  // var trEl = document.createElement('tr');
+  // var tdEl = document.createElement('td');
+  tdEl.appendChild(document.createTextNode('Location'));
+  tdEl.appendChild(document.createTextNode('Total'));
+  for (var i = 0; i < /*Why can't I use <= here?*/ hours.length; i++) {
+    tdEl.appendChild(document.createTextNode(hours[i]));
   }
+  trEl.appendChild(tdEl);
+  theadEl.appendChild(trEl);
   tableEl.appendChild(theadEl);
   El.appendChild(tableEl);
 }
-function renderDailyVolumeTable(store) {
-  var El = document.getElementById(store.site);
-  var trEl = document.createElement('tr');
-  trEl.appendChild(document.createTextNode(store.site));
-  for (var i = 0; i <= hours.length; i++) {
-    var tdEl = document.createElement('td');
-    tdEl = hours[i] + ': ' + store.hourlyVolume[i] + ' cookies';
-    trEl.appendChild(tdEl);
+function renderTableRows() {
+  for (var i = 0; i < allStores.length ; i++ ) {
+    console.log(allStores[i].site);
+    console.log(allStores[i].dailyVolume);
+    for(var i; ){
+
+    }
   }
-  tdEl.textContent = 'Total: ' + store.dailyVolume + ' cookies';
-  trEl.appendChild(tdEl);
-  El.appendChild(tdEl);
+  // trEl.appendChild(document.createTextNode(store.site));
+  // for (var i = 0; i <= hours.length; i++) {
+  //   var tdEl = document.createElement('td');
+  //   tdEl = hours[i] + ': ' + store.hourlyVolume[i] + ' cookies';
+  //   trEl.appendChild(tdEl);
+  // }
+  // tdEl.textContent = 'Total: ' + store.dailyVolume + ' cookies';
+  // trEl.appendChild(tdEl);
+  // El.appendChild(tdEl);
 }
 
 // calculate hourly volume
@@ -81,8 +94,11 @@ calcDailyVolume(southcenter);
 calcDailyVolume(bellevueSquare);
 calcDailyVolume(alki);
 
-// build table
-buildTable(allStores);
+//  render table head
+renderTableHead();
+
+// render table rows
+renderTableRows();
 
 // render daily volume to page
 renderDailyVolume(pikePlace);

@@ -2,50 +2,51 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Palatino, serif;
-  background-color: #f4dec2;
   color: #212121;
+  background-color: #f4dec2;
 }
-
 header {
   display: inherit;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
+  align-items:  center;
 }
-
-#wordmark {
+#logo {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 3em;
   padding: 1em;
+  font-size: 3em;
   color: #e98977;
   text-shadow: 3px 3px 3px #c0c0c0;
 }
-
 img.left {
   justify-content: flex-start;
   padding: 1em;
   max-width: 7em;
 }
-
 img.right {
   justify-content: flex-end;
   padding: 1em;
   max-width: 7em;
   transform: scaleX(-1);
 }
-
+h1 {
+  font-size: 2em;
+}
 h2 {
-  font-size: 1.5em;
+  font-size: 1.7411em;
 }
-
 h3 {
-  font-size: 1.125em;
+  font-size: 1.5157em;
 }
-
+h4 {
+  font-size: 1.3195em;
+}
+h5 {
+  font-size: 1.1487em;
+}
 section {
   background-color: #f4b36c;
 }
-
 li {
   font-family: Helvetica, sans-serif;
   color: #424242;
