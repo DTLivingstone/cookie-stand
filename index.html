@@ -3,21 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Pat's Salmon Cookies</title>
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <header>
-      <img src="images/salmon.png" alt="Big ugly salmon" />
-      <h1>Pat's Salmon Cookies</h1>
-      <img id ="flipped" src="images/salmon.png" alt="nomlas ylgu giB" />
+      <img class="left" src="images/salmon-small.png" alt="Big ugly salmon" />
+      <span id="logo">Pat's Salmon Cookies</span>
+      <img class ="right" src="images/salmon-small.png" alt="nomlas ylgu giB" />
     </header>
-    <section id="Pike Place Market"> </section>
-    <section id="SeaTac Airport"> </section>
-    <section id="Southcenter Mall"> </section>
-    <section id="Bellevue Square"> </section>
-    <section id="Alki"> </section>
-    <script src="js/sales.js"></script>
+    <section id="salesTable"></section>
+    <section>
     <h2>Style Guide</h2>
     <h3>Colors</h3>
     <ul>
@@ -29,10 +26,12 @@
       <li>Table Background: #f4b36c</li>
     </ul>
     <h3>Fonts</h3>
-      <ul>
-        <li>Logo: Berkshire Swash with shadow of 3x3x3 px</li>
-        <li>Regular Text: Palatino</li>
-        <li>Data Text: Helvetica</li>
-      </ul>
+    <ul>
+      <li>Logo: Berkshire Swash with shadow of 3x3x3 px</li>
+      <li>Regular Text: Palatino</li>
+      <li>Data Text: Helvetica</li>
+    </ul>
+    <script src="js/sales.js"></script>
+  </section>
   </body>
 </html>

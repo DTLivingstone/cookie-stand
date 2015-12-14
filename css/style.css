@@ -1,35 +1,60 @@
 body {
-  background-color: #f4dec2;
+  display: flex;
+  flex-direction: column;
+  margin: 0 5em 0 5em;
   font-family: Palatino, serif;
-  font-size: 24px;
   color: #212121;
+  background-color: #f4dec2;
 }
-
-h1 {
+header {
+  display: inherit;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:  center;
+  margin: 1em 0 1em 0;
+}
+section {
+  margin: 1em 0 1em 0;
+}
+#logo {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 80px;
+  font-size: 3em;
   color: #e98977;
   text-shadow: 3px 3px 3px #c0c0c0;
 }
-
-img {
-  max-width: 200px;
+img.left {
+  justify-content: flex-start;
+  max-width: 10em;
 }
-
-#flipped {
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
+img.right {
+  justify-content: flex-end;
+  max-width: 10em;
   transform: scaleX(-1);
-  filter: "FlipH";
 }
-
-section {
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.7411em;
+}
+h3 {
+  font-size: 1.5157em;
+}
+h4 {
+  font-size: 1.3195em;
+}
+h5 {
+  font-size: 1.1487em;
+}
+table {
+  font-family: Helvetica, sans-serif;
+  color: #424242;
   background-color: #f4b36c;
 }
-
-li {
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  color: #424242;
+thead {
+  font-weight: bold;
+}
+td {
+  padding: .5em;
+  border: 1px solid #424242;
 }

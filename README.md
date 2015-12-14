@@ -3,6 +3,7 @@ SEA-201d2 class assignment
 
 ## Author
 David Livingstone
+
 david@david.tl
 
 ## Description
@@ -13,3 +14,4 @@ This software is available under the MIT License. See LICENSE for details.
 
 ## References
 My transforms for the "flipped" id were found at css-tricks.com
+Reset.css was downloaded from http://meyerweb.com/eric/tools/css/reset/ and is licensed under public domain
