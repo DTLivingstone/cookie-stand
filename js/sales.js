@@ -6,7 +6,6 @@ var southcenter = new Store('Southcenter Mall', 11, 38, 1.9, [], 0);
 var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3, [], 0);
 var alki = new Store('Alki', 3, 24, 26, [], 0);
 var allStores = [pikePlace, seaTac, southcenter, bellevueSquare, alki];
-
 var El = document.getElementById('salesTable');
 var tableEl = document.createElement('table');
 
@@ -39,7 +38,7 @@ function renderTableHead() {
   var tdEl = document.createElement('td');
   tdEl.appendChild(document.createTextNode('Total'));
   trEl.appendChild(tdEl);
-  for (var i = 0; i < /*Why can't I use <= here?*/ hours.length; i++) {
+  for (var i = 0; i < hours.length; i++) {
     var tdEl = document.createElement('td');
     tdEl.appendChild(document.createTextNode(hours[i]));
     trEl.appendChild(tdEl);
@@ -53,9 +52,7 @@ function renderTableRows() {
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
     tdEl.appendChild(document.createTextNode(allStores[i].site));
-    console.log(tdEl);
     trEl.appendChild(tdEl);
-    console.log(tdEl);
     var tdEl = document.createElement('td');
     tdEl.appendChild(document.createTextNode(allStores[i].dailyVolume));
     trEl.appendChild(tdEl);
@@ -83,7 +80,7 @@ calcDailyVolume(southcenter);
 calcDailyVolume(bellevueSquare);
 calcDailyVolume(alki);
 
-//  render table head
+// render table head
 renderTableHead();
 
 // render table rows
