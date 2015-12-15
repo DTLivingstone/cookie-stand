@@ -35,7 +35,7 @@ function calcHourlyVolume(store) {
 }
 function calcDailyVolume(store) {
   for (var i = 0; i <= hours.length; i++) {
-    store.dailyVolume += store.hourlyVolume;
+    store.dailyVolume += store.hourlyVolume[i];
   }
 }
 function renderTableHead() {

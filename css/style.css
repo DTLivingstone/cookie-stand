@@ -58,3 +58,8 @@ td {
   padding: .5em;
   border: 1px solid #424242;
 }
+fieldset {
+  display: flex;
+  flex-direction: column;
+  
+}
