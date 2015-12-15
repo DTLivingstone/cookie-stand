@@ -10,10 +10,10 @@ var Store = function(site, minCustomers, maxCustomers, avgCustomerVolume, hourly
 
 // initialize variables
 var hours = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
-var allStores = [];
 var el = document.getElementById('salesTable');
 var tableEl = document.createElement('table');
-
+var storeform = document.getElementById('store-form');
+var allStores = [];
 var newStore = new Store('Pike Place Market', 17, 88, 5.2, [], 0);
 allStores.push(newStore);
 var newStore = new Store('SeaTac Airport', 6, 44, 1.2, [], 0);
@@ -24,7 +24,6 @@ var newStore = new Store('Bellevue Square', 20, 48, 3.3, [], 0);
 allStores.push(newStore);
 var newStore = new Store('Alki', 3, 24, 26, [], 0);
 allStores.push(newStore);
-
 
 // functions
 function calcHourlyVolume(store) {
@@ -74,19 +73,14 @@ function renderTableRows() {
     el.appendChild(tableEl);
   }
 }
-
-// calculate hourly volume
-for (var i = 0; i < allStores.length; i++) {
-  calcHourlyVolume(allStores[i]);
+function handleStoreSubmit(event) {
+  console.log(event);
+  // allStores.push(new Store();
+  allStores.forEach(calcHourlyVolume);
+  allStores.forEach(calcDailyVolume);
+  renderTableHead();
+  renderTableRows();
 }
 
-// calculate daily volume
-for (var i = 0; i < allStores.length; i++) {
-  calcDailyVolume(allStores[i]);
-}
-
-// render table head
-renderTableHead();
-
-// render table rows
-renderTableRows();
+// event listener
+storeForm.addEventListener('submit', handleStoreSubmit);
