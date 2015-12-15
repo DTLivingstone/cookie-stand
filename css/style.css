@@ -13,9 +13,6 @@ header {
   align-items:  center;
   margin: 1em 0 1em 0;
 }
-section {
-  margin: 1em 0 1em 0;
-}
 #logo {
   font-family: 'Berkshire Swash', cursive;
   font-size: 3em;
@@ -30,6 +27,9 @@ img.right {
   justify-content: flex-end;
   max-width: 10em;
   transform: scaleX(-1);
+}
+section {
+  margin: 1em 0 1em 0;
 }
 h1 {
   font-size: 2em;

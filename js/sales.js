@@ -1,23 +1,32 @@
-// initialize variables
-var hours = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
-var pikePlace = new Store('Pike Place Market', 17, 88, 5.2, [], 0);
-var seaTac = new Store('SeaTac Airport', 6, 44, 1.2, [], 0);
-var southcenter = new Store('Southcenter Mall', 11, 38, 1.9, [], 0);
-var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3, [], 0);
-var alki = new Store('Alki', 3, 24, 26, [], 0);
-var allStores = [pikePlace, seaTac, southcenter, bellevueSquare, alki];
-var El = document.getElementById('salesTable');
-var tableEl = document.createElement('table');
-
-// functions
-function Store(site, minCustomers, maxCustomers, avgCustomerVolume, hourlyVolume, dailyVolume) {
+// constructor for individual store
+var Store = function(site, minCustomers, maxCustomers, avgCustomerVolume, hourlyVolume, dailyVolume) {
   this.site = site;
   this.minCustomers = minCustomers;
   this.maxCustomers = maxCustomers;
   this.avgCustomerVolume = avgCustomerVolume;
   this.hourlyVolume = hourlyVolume;
   this.dailyVolume = dailyVolume;
-}
+};
+
+// initialize variables
+var hours = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
+var allStores = [];
+var el = document.getElementById('salesTable');
+var tableEl = document.createElement('table');
+
+var newStore = new Store('Pike Place Market', 17, 88, 5.2, [], 0);
+allStores.push(newStore);
+var newStore = new Store('SeaTac Airport', 6, 44, 1.2, [], 0);
+allStores.push(newStore);
+var newStore = new Store('Southcenter Mall', 11, 38, 1.9, [], 0);
+allStores.push(newStore);
+var newStore = new Store('Bellevue Square', 20, 48, 3.3, [], 0);
+allStores.push(newStore);
+var newStore = new Store('Alki', 3, 24, 26, [], 0);
+allStores.push(newStore);
+
+
+// functions
 function calcHourlyVolume(store) {
    for (var i = 0; i <= hours.length; i++) {
     x = Math.floor((Math.random() * (store.maxCustomers - store.minCustomers + 1) + store.minCustomers) * store.avgCustomerVolume);
@@ -26,7 +35,7 @@ function calcHourlyVolume(store) {
 }
 function calcDailyVolume(store) {
   for (var i = 0; i <= hours.length; i++) {
-    store.dailyVolume += store.hourlyVolume[i];
+    store.dailyVolume += store.hourlyVolume;
   }
 }
 function renderTableHead() {
@@ -45,10 +54,10 @@ function renderTableHead() {
   }
   theadEl.appendChild(trEl);
   tableEl.appendChild(theadEl);
-  El.appendChild(tableEl);
+  el.appendChild(tableEl);
 }
 function renderTableRows() {
-  for (var i = 0; i < allStores.length ; i++ ) {
+  for (var i = 0; i < allStores.length ; i++) {
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
     tdEl.appendChild(document.createTextNode(allStores[i].site));
@@ -62,23 +71,19 @@ function renderTableRows() {
       trEl.appendChild(tdEl);
     }
     tableEl.appendChild(trEl);
-    El.appendChild(tableEl);
+    el.appendChild(tableEl);
   }
 }
 
 // calculate hourly volume
-calcHourlyVolume(pikePlace);
-calcHourlyVolume(seaTac);
-calcHourlyVolume(southcenter);
-calcHourlyVolume(bellevueSquare);
-calcHourlyVolume(alki);
+for (var i = 0; i < allStores.length; i++) {
+  calcHourlyVolume(allStores[i]);
+}
 
 // calculate daily volume
-calcDailyVolume(pikePlace);
-calcDailyVolume(seaTac);
-calcDailyVolume(southcenter);
-calcDailyVolume(bellevueSquare);
-calcDailyVolume(alki);
+for (var i = 0; i < allStores.length; i++) {
+  calcDailyVolume(allStores[i]);
+}
 
 // render table head
 renderTableHead();
