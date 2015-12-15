@@ -28,9 +28,10 @@ allStores.push(newStore);
 // functions
 var calcHourlyVolume =  function(store) {
    for (var i = 0; i < hours.length; i++) {
-    // is this broken?
-    x = Math.floor((Math.random() * (store.maxCustomers - store.minCustomers + 1) + store.minCustomers) * store.avgCustomerVolume);
-    store.hourlyVolume[i] = x
+    // TODO fix broken math
+    // x = Math.floor((Math.random() * (store.maxCustomers - store.minCustomers + 1) + store.minCustomers) * store.avgCustomerVolume);
+    x = Math.floor(((Math.random() * (store.maxCustomers - store.minCustomers + 1)) + store.minCustomers) * store.avgCustomerVolume);
+    store.hourlyVolume[i] = x;
   }
 };
 var calcDailyVolume = function(store) {
@@ -77,8 +78,6 @@ var renderTableRows = function() {
 var handleStoreSubmit = function(event) {
   event.preventDefault();
   clearTable();
-  console.log('I should have just cleared the table!!');
-
   var site = event.target.site.value;
   var minCustomers = parseInt(event.target.minCustomers.value, 10);
   var maxCustomers = parseInt(event.target.maxCustomers.value, 10);
@@ -97,7 +96,7 @@ var handleStoreSubmit = function(event) {
   renderTableRows();
 };
 var clearTable = function() {
-  console.log("removing" + el.firstChild);
+  console.log("removing: " + el.firstChild);
   el.removeChild(el.firstChild);
 };
 
