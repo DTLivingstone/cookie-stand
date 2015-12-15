@@ -26,18 +26,19 @@ var newStore = new Store('Alki', 3, 24, 26, [], 0);
 allStores.push(newStore);
 
 // functions
-function calcHourlyVolume(store) {
-   for (var i = 0; i <= hours.length; i++) {
+var calcHourlyVolume =  function(store) {
+   for (var i = 0; i < hours.length; i++) {
+    // is this broken?
     x = Math.floor((Math.random() * (store.maxCustomers - store.minCustomers + 1) + store.minCustomers) * store.avgCustomerVolume);
     store.hourlyVolume[i] = x
   }
-}
-function calcDailyVolume(store) {
-  for (var i = 0; i <= hours.length; i++) {
+};
+var calcDailyVolume = function(store) {
+  for (var i = 0; i < hours.length; i++) {
     store.dailyVolume += store.hourlyVolume[i];
   }
-}
-function renderTableHead() {
+};
+var renderTableHead = function() {
   var theadEl = document.createElement('thead');
   var trEl = document.createElement('tr');
   var tdEl = document.createElement('td');
@@ -54,8 +55,8 @@ function renderTableHead() {
   theadEl.appendChild(trEl);
   tableEl.appendChild(theadEl);
   el.appendChild(tableEl);
-}
-function renderTableRows() {
+};
+var renderTableRows = function() {
   for (var i = 0; i < allStores.length ; i++) {
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
@@ -72,15 +73,39 @@ function renderTableRows() {
     tableEl.appendChild(trEl);
     el.appendChild(tableEl);
   }
-}
-function handleStoreSubmit(event) {
-  console.log(event);
-  // allStores.push(new Store();
+};
+var handleStoreSubmit = function(event) {
+  event.preventDefault();
+  clearTable();
+  console.log('I should have just cleared the table!!');
+
+  var site = event.target.site.value;
+  var minCustomers = parseInt(event.target.minCustomers.value, 10);
+  var maxCustomers = parseInt(event.target.maxCustomers.value, 10);
+  var avgCustomerVolume = parseInt(event.target.avgCustomerVolume.value);
+  var newStore = new Store(site, minCustomers, maxCustomers, avgCustomerVolume, [], 0);
+  console.log(newStore);
+  event.target.site.value = null;
+  event.target.minCustomers.value = null;
+  event.target.maxCustomers.value = null;
+  event.target.avgCustomerVolume.value = null;
+
+  allStores.push(newStore);
   allStores.forEach(calcHourlyVolume);
   allStores.forEach(calcDailyVolume);
   renderTableHead();
   renderTableRows();
-}
+};
+var clearTable = function() {
+  console.log("removing" + el.firstChild);
+  el.removeChild(el.firstChild);
+};
+
+// populate table with initial data
+allStores.forEach(calcHourlyVolume);
+allStores.forEach(calcDailyVolume);
+renderTableHead();
+renderTableRows();
 
 // event listener
 storeForm.addEventListener('submit', handleStoreSubmit);
