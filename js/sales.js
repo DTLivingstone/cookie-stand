@@ -1,5 +1,4 @@
 // constructor and prototypes
-
 var Store = function(site, minCustomers, maxCustomers, avgCustomerVolume) {
   this.site = site;
   this.minCustomers = minCustomers;
@@ -9,23 +8,32 @@ var Store = function(site, minCustomers, maxCustomers, avgCustomerVolume) {
 
 Store.prototype.calcHourlyVolume = function () {
   var hourlyVolume = [];
-  hourlyVolume = [1,2,3,4,5,6,7,8];
+  for (var i = 0; i < hours.length; i += 1) {
+    hourlyVolume[i] = Math.floor(Math.random() * 9);
+    // randomization code
+
+  }
   return hourlyVolume;
 };
 
 Store.prototype.calcDailyVolume = function() {
   var dailyVolume = 0;
-  var n = [];
-  n = this.calcHourlyVolume();
-  n.forEach(function(y) {
+  this.calcHourlyVolume().forEach(function(y) {
     dailyVolume = dailyVolume + y;
   });
   return dailyVolume;
 };
 
 Store.prototype.renderStore = function () {
-  // var trEl = document.createElement('tr');
-  // var tdEl = document.createElement('td');
+  // make new row
+  // append site as td
+  // append total volume as td
+  // append hourly volumes as tds
+  // append row to table
+
+
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
   // tdEl.appendChild(document.createTextNode(allStores[i].site));
   // trEl.appendChild(tdEl);
   // var tdEl = document.createElement('td');
