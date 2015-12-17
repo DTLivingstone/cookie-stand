@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <title>Pat's Salmon Cookies</title>
@@ -7,31 +8,54 @@
     <link rel="stylesheet" href="css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
   </head>
+
   <body>
+
     <header>
       <img class="left" src="images/salmon-small.png" alt="Big ugly salmon" />
       <span id="logo">Pat's Salmon Cookies</span>
       <img class ="right" src="images/salmon-small.png" alt="nomlas ylgu giB" />
     </header>
-    <section id="salesTable"></section>
+
     <section>
-    <h2>Style Guide</h2>
-    <h3>Colors</h3>
-    <ul>
-      <li>Logo: #e98977</li>
-      <li>Logo Shadow: #c0c0c0</li>
-      <li>Regular Text: #212121</li>
-      <li>Data Text: #424242</li>
-      <li>Background: #f4dec2</li>
-      <li>Table Background: #f4b36c</li>
-    </ul>
-    <h3>Fonts</h3>
-    <ul>
-      <li>Logo: Berkshire Swash with shadow of 3x3x3 px</li>
-      <li>Regular Text: Palatino</li>
-      <li>Data Text: Helvetica</li>
-    </ul>
+      <table id="sales-table"></table>
+    </section>
+
+    <section>
+      <form id="store-form">
+        <fieldset>
+          <legend><h2>Add new store</h2></legend>
+          <label for="site">Site: </label>
+          <input name="site" type="text">
+          <label for="minCustomers">Minimum number of customers: </label>
+          <input name="minCustomers" type="text">
+          <label for="maxCustomers">Maximum number of customers: </label>
+          <input name="maxCustomers" type="text">
+          <label for="avgCustomersVolume">Average number of purchases per customer: </label>
+          <input name="avgCustomerVolume" type="text">
+          <button id="submit-button" type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section>
+      <h2>Style Guide</h2>
+      <h3>Colors</h3>
+      <ul>
+        <li>Logo: #e98977</li>
+        <li>Logo Shadow: #c0c0c0</li>
+        <li>Regular Text: #212121</li>
+        <li>Data Text: #424242</li>
+        <li>Background: #f4dec2</li>
+        <li>Table Background: #f4b36c</li>
+      </ul>
+      <h3>Fonts</h3>
+      <ul>
+        <li>Logo: Berkshire Swash with shadow of 3x3x3 px</li>
+        <li>Regular Text: Palatino</li>
+        <li>Data Text: Helvetica</li>
+      </ul>
+    </section>
     <script src="js/sales.js"></script>
-  </section>
   </body>
 </html>
