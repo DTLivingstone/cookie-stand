@@ -1,87 +1,93 @@
-// initialize variables
-var hours = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
-var pikePlace = new Store('Pike Place Market', 17, 88, 5.2, [], 0);
-var seaTac = new Store('SeaTac Airport', 6, 44, 1.2, [], 0);
-var southcenter = new Store('Southcenter Mall', 11, 38, 1.9, [], 0);
-var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3, [], 0);
-var alki = new Store('Alki', 3, 24, 26, [], 0);
-var allStores = [pikePlace, seaTac, southcenter, bellevueSquare, alki];
-var El = document.getElementById('salesTable');
-var tableEl = document.createElement('table');
-
-// functions
-function Store(site, minCustomers, maxCustomers, avgCustomerVolume, hourlyVolume, dailyVolume) {
+// constructor and prototypes
+var Store = function(site, minCustomers, maxCustomers, avgCustomerVolume, hourlyVolume, dailyVolume) {
   this.site = site;
   this.minCustomers = minCustomers;
   this.maxCustomers = maxCustomers;
   this.avgCustomerVolume = avgCustomerVolume;
   this.hourlyVolume = hourlyVolume;
   this.dailyVolume = dailyVolume;
-}
-function calcHourlyVolume(store) {
-   for (var i = 0; i <= hours.length; i++) {
-    x = Math.floor((Math.random() * (store.maxCustomers - store.minCustomers + 1) + store.minCustomers) * store.avgCustomerVolume);
-    store.hourlyVolume[i] = x
+};
+
+Store.prototype.calcHourlyVolume = function() {
+  var hourlyVolume = [];
+  for (var i = 0; i < hours.length; i += 1) {
+    hourlyVolume[i] = Math.round(this.avgCustomerVolume * (Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers));
   }
-}
-function calcDailyVolume(store) {
-  for (var i = 0; i <= hours.length; i++) {
-    store.dailyVolume += store.hourlyVolume[i];
-  }
-}
-function renderTableHead() {
-  var theadEl = document.createElement('thead');
+  this.hourlyVolume = hourlyVolume;
+};
+
+Store.prototype.calcDailyVolume = function() {
+  var dailyVolume = 0;
+  this.hourlyVolume.forEach(function(y) {
+    dailyVolume = dailyVolume + y;
+  });
+  this.dailyVolume = dailyVolume;
+};
+
+Store.prototype.renderStore = function() {
   var trEl = document.createElement('tr');
-  var tdEl = document.createElement('td');
-  tdEl.appendChild(document.createTextNode('Location'));
-  trEl.appendChild(tdEl);
-  var tdEl = document.createElement('td');
-  tdEl.appendChild(document.createTextNode('Total'));
-  trEl.appendChild(tdEl);
-  for (var i = 0; i < hours.length; i++) {
+  var renderTh = function(text){
     var tdEl = document.createElement('td');
-    tdEl.appendChild(document.createTextNode(hours[i]));
+    tdEl.appendChild(document.createTextNode(text));
     trEl.appendChild(tdEl);
-  }
-  theadEl.appendChild(trEl);
-  tableEl.appendChild(theadEl);
-  El.appendChild(tableEl);
-}
-function renderTableRows() {
-  for (var i = 0; i < allStores.length ; i++ ) {
-    var trEl = document.createElement('tr');
-    var tdEl = document.createElement('td');
-    tdEl.appendChild(document.createTextNode(allStores[i].site));
-    trEl.appendChild(tdEl);
-    var tdEl = document.createElement('td');
-    tdEl.appendChild(document.createTextNode(allStores[i].dailyVolume));
-    trEl.appendChild(tdEl);
-    for(var j =  0; j < hours.length; j++ ){
-      var tdEl = document.createElement('td');
-      tdEl.appendChild(document.createTextNode(allStores[i].hourlyVolume[j]));
-      trEl.appendChild(tdEl);
-    }
-    tableEl.appendChild(trEl);
-    El.appendChild(tableEl);
-  }
-}
+  };
+  renderTh(this.site);
+  renderTh(this.dailyVolume);
+  this.hourlyVolume.forEach(renderTh);
+  tableEl.appendChild(trEl);
+};
 
-// calculate hourly volume
-calcHourlyVolume(pikePlace);
-calcHourlyVolume(seaTac);
-calcHourlyVolume(southcenter);
-calcHourlyVolume(bellevueSquare);
-calcHourlyVolume(alki);
-
-// calculate daily volume
-calcDailyVolume(pikePlace);
-calcDailyVolume(seaTac);
-calcDailyVolume(southcenter);
-calcDailyVolume(bellevueSquare);
-calcDailyVolume(alki);
+// initialize variables
+var tableEl = document.getElementById('sales-table');
+var storeForm = document.getElementById('store-form');
+var hours = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
+var allStores = [];
 
 // render table head
-renderTableHead();
+(function() {
+  var theadEl = document.createElement('thead');
+  var trEl = document.createElement('tr');
+  var renderTh = function(text) {
+    var thEl = document.createElement('th');
+    thEl.appendChild(document.createTextNode(text));
+    trEl.appendChild(thEl);
+  }
+  renderTh("Location");
+  renderTh("Total");
+  hours.forEach(renderTh);
+  theadEl.appendChild(trEl);
+  tableEl.appendChild(theadEl);
+})();
 
-// render table rows
-renderTableRows();
+// add store
+var addStore = function(site, minCustomers, maxCustomers, avgCustomerVolume) {
+  var newStore = new Store(site, minCustomers, maxCustomers, avgCustomerVolume);
+  allStores.push(newStore);
+  allStores[allStores.length - 1].calcHourlyVolume();
+  allStores[allStores.length - 1].calcDailyVolume();
+  allStores[allStores.length - 1].renderStore();
+};
+
+// add initial stores
+addStore('Pike Place Market', 17, 88, 5.2);
+addStore('SeaTac Airport', 6, 44, 1.2);
+addStore('Southcenter Mall', 11, 38, 1.9);
+addStore('Bellevue Square', 20, 48, 3.3);
+addStore('Alki', 3, 24, 26);
+
+// event handler
+var handleStoreSubmit = function(event) {
+  event.preventDefault();
+  var site = event.target.site.value;
+  var minCustomers = parseInt(event.target.minCustomers.value, 10);
+  var maxCustomers = parseInt(event.target.maxCustomers.value, 10);
+  var avgCustomerVolume = parseInt(event.target.avgCustomerVolume.value, 10);
+  addStore(site, minCustomers, maxCustomers, avgCustomerVolume);
+  event.target.site.value = null;
+  event.target.minCustomers.value = null;
+  event.target.maxCustomers.value = null;
+  event.target.avgCustomerVolume.value = null;
+};
+
+// event listener
+storeForm.addEventListener('submit', handleStoreSubmit);
